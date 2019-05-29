@@ -1,0 +1,34 @@
+.binding{
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.binding .title{
+  color: #333;
+  font-size: 32rpx;
+  margin: 38rpx 0 0 44rpx; 
+}
+.binding .input-wrapper{
+  padding: 0 55rpx;
+}
+.binding .input-wrapper > input {
+  border: 2rpx solid #F6705A;
+  padding: 16rpx 32rpx;
+  border-radius: 16rpx;
+  color: #333;
+  margin: 56rpx 0;
+  font-size: 24rpx;
+}
+.binding .tips{
+  color: #F6705A;
+  font-size: 24rpx;
+  margin: 32rpx auto;
+
+}
+.binding .bg{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

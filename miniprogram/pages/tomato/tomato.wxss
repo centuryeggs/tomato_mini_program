@@ -1,0 +1,11 @@
+.container{
+  background: #F0F7F6;
+  height: 100vh;
+}
+.container .clock{
+  padding-top: 282rpx;
+  padding-bottom: 116rpx;
+}
+.container .stop{
+  margin-bottom: 48rpx;
+}
