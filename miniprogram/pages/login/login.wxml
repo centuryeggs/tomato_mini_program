@@ -5,6 +5,6 @@
   <view class="name-wrap">
     <open-data type="userNickName" class="name" />
   </view>
-  <button class="loginButton">登录</button>
+  <button class="loginButton"  open-type="getUserInfo" bindgetuserinfo="login" withCredentuals="true">登录</button>
   <navigator url="/pages/binding/binding" class="binding">请优先与PC端绑定</navigator>
 </view>
