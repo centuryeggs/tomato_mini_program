@@ -6,8 +6,8 @@ const _http = (method, url, data) => {
       "t-app-id": t_app_id,
       "t-app-secret": t_app_secret
     }
-    if (wx.getStorageSync('X-token')){
-      header["Authorization"] = `Bearer ${wx.getStorageSync('X-token')}`
+    if (wx.getStorageSync('x-token')){
+      header["Authorization"] = `Bearer ${wx.getStorageSync('x-token')}`
     }
     wx.request({
       url: `${host}${url}`,

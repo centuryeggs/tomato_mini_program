@@ -28,9 +28,6 @@ Page({
         url: "/pages/home/home"
       })
     })
-  },
-  onShow: function () {
-
-  },
+  }
 })
 

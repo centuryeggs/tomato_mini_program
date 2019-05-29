@@ -2,7 +2,7 @@
   <scroll-view class="todoList" scroll-y="true">
     <view class="item" wx:for="{{lists}}" wx:key="{{item.id}}" wx:for-index="index" bindtap="completeTodo" data-index="{{index}}">
       <view class="select {{item.finished && 'active'}}"></view>
-      <text>{{item.text}}</text>
+      <text>{{item.description}}</text>
     </view>
   </scroll-view>
   <g-button text="创建任务" type="change" size="mini" bindtap="showInputBox"></g-button>

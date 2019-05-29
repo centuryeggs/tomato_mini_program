@@ -3,7 +3,6 @@ Page({
   data: {
     account: "",
     password: "",
-    isBinded: true
   },
 
   watchAccount(event) {
@@ -17,19 +16,16 @@ Page({
       password: event.detail.value,
     })
   },
-  toSignUp() {
-    this.setData({
-      isBinded: false, 
-      account: "",
-      password: "",
+
+  submit(){
+    http.post('/bindings', {
+      account: this.data.account,
+      password_digest: this.data.password_digest
     })
-  },
-  toBinding() {
-    this.setData({
-      isBinded: true, 
-      account: "",
-      password: "",
+    .then(response=>{
+      wx.setStorageSync("me", response.data.resource)
     })
+
   },
   
   onLoad: function (options) {
