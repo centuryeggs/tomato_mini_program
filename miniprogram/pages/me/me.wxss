@@ -28,13 +28,11 @@
   justify-content: center;
   flex: 1;
  }
-
 .header .details .name {
   color: black;
   font-size: 32rpx;
   padding-bottom: 22rpx;
 }
-
 .tabs { 
   background: #fff;
   display: flex;
@@ -62,14 +60,12 @@
   bottom: -16rpx;
   transform: translate(-50%,-50%);
 }
-
 .cantainer .lists { 
   flex: 1;
   padding: 0 24rpx;
   box-sizing:  border-box;
   overflow: scroll;
  }
-
 .cantainer .lists .item {
   background: #fff;
   font-size: 32rpx;
@@ -79,7 +75,6 @@
   box-shadow: 0rpx 2rpx 6rpx 0rpx rgba(0,0,0,0.10);
   margin-bottom: 32rpx;
 }
-
 .cantainer .lists .item .time {
   font-size: 38rpx;
   font-weight: bold;

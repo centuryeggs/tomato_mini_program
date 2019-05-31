@@ -2,7 +2,7 @@
   height: 100vh;
   background: #F6F6F6;
   display: flex;
-  flex-direction: column; /*flex容器中的元素排列方向：纵轴排列*/
+  flex-direction: column;
   position: relative;
 }
 

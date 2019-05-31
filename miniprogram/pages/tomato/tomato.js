@@ -1,92 +1,147 @@
+const {
+  http
+} = require('../../lib/http.js')
+
 Page({
+
   timer: null,
+
   data: {
-    defaultSecond: 1500,
+    defaultSecond: 10,
     time: "",
     isRunning: true,
     abandonBox: false,
     finishedBox: false,
-    timeOver: false
+    timeOver: false,
+    tomato: {},
+    tomatoDescription: "",
   },
+
+  onShow: function() {
+    http.post('/tomatoes').then(response => {
+      this.setData({
+        tomato: response.data.resource
+      })
+    })
+    this.startTime()
+  },
+
   showTime() {
     let m = Math.floor(this.data.defaultSecond / 60)
     let s = Math.floor(this.data.defaultSecond % 60)
     m = m < 10 ? '0' + m : m
     s = s < 10 ? '0' + s : s
-    this.setData({ time: m + ":" + s })
+    this.setData({
+      time: m + ":" + s
+    })
   },
+
   stopTime() {
-    this.setData({ isRunning: false })
+    this.setData({
+      isRunning: false
+    })
     clearInterval(this.timer)
     this.timer = null
   },
+
   startTime() {
-    if (this.data.defaultSecond === 0) { return }
+    if (this.data.defaultSecond === 0) {
+      return
+    }
     this.showTime()
     this.timer = setInterval(() => {
       this.data.defaultSecond--
-      this.showTime()
+        this.showTime()
       if (this.data.defaultSecond === 0) {
-        this.setData({ timeOver: true , finishedBox: true})
+        this.setData({
+          timeOver: true,
+          finishedBox: true
+        })
         this.stopTime()
       }
     }, 1000)
-    this.setData({ isRunning: true })
-  },
-  abandonConfirm(e) {
-    this.setData({ abandonBox: false })
-    console.log(e.detail)
-    wx.switchTab({
-      url: "/pages/_home/_home"
+    this.setData({
+      isRunning: true
     })
   },
+
+  abandonConfirm(event) {
+    console.log(event)
+    let content = event.detail
+    http.put(`/tomatoes/${this.data.tomato.id}`, {
+        description: content,
+        aborted: true
+      })
+      .then(response => {
+        wx.switchTab({
+          url: "/pages/home/home"
+        })
+      })
+  },
+
   abandonCancel() {
-    this.setData({ abandonBox: false })
+    this.setData({
+      abandonBox: false
+    })
     this.startTime()
   },
+
   abandon() {
     this.stopTime()
-    this.setData({ abandonBox: true })
-  },
-  again() {
-    this.setData({ defaultSecond: 1500, timeOver: false })
-    this.startTime()
-  },
-  finishedConfirm(e) {
-    this.setData({ finishedBox: false })
-    console.log(e.detail)
-    wx.switchTab({
-      url: "/pages/_home/_home"
+    this.setData({
+      abandonBox: true
     })
   },
-  finishedCancel(){
-    this.setData({ finishedBox: false })
-  },
 
-
-
-
-
-
-
-
-  onShow: function () {
+  again() {
+    this.setData({
+      defaultSecond: 1500,
+      timeOver: false
+    })
     this.startTime()
   },
 
-  onHide: function () {
-
+  finishedConfirm(event) {
+    if (event.detail){
+      http.put(`/tomatoes/${this.data.tomato.id}`, {
+        description: event.detail,
+        aborted: false
+      }).then(response => {
+        this.setData({
+          finishedBox: false
+        })
+      })
+    }
   },
-  onUnload: function () {
 
+  finishedCancel() {
+    http.put(`/tomatoes/${this.data.tomato.id}`, {
+      description: event.detail,
+      aborted: true
+    }).then(response=>{
+      this.setData({
+        finishedBox: false
+      })
+    })
   },
-  onPullDownRefresh: function () {
 
+  onHide() {
+    this.stopTime()
+    if (!timeOver) {
+      http.put(`/tomatoes/${this.data.tomato.id}`, {
+        description: "退出放弃",
+        aborted: true
+      })
+    }
   },
-  onReachBottom: function () {
 
+  onUnload() {
+    this.stopTime()
+    if (!timeOver) {
+      http.put(`/tomatoes/${this.data.tomato.id}`, {
+        description: "退出放弃",
+        aborted: true
+      })
+    }
   },
-  onShareAppMessage: function () {
-
-  }
 })

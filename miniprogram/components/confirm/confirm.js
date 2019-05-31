@@ -7,10 +7,22 @@ Component({
     placeholder: {
       type: String,
       value: ""
+    },
+    value: {
+      type: String,
+      value: ""
     }
   },
-  data:{
+  data: {
+    type: String,
     value: ""
+  },
+  lifetimes:{
+    attached(){
+      if(this.properties.value){
+        this.properties.value = this.data.value
+      }
+    }
   },
   methods:{
     confirm(){

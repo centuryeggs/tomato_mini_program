@@ -2,9 +2,6 @@ const { http } = require('../../lib/http.js')
 const { app_id, app_secret } = getApp().globalData
 
 Page({
-  data: {
-
-  },
 
   login(event) {
     wx.login({
@@ -13,6 +10,7 @@ Page({
       }
     })
   },
+  
   loginMe(code, iv, encrypted_data){
     http.post('/sign_in/mini_program_user',{
       code,
