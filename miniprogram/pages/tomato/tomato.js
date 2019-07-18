@@ -66,7 +66,6 @@ Page({
   },
 
   abandonConfirm(event) {
-    console.log(event)
     let content = event.detail
     http.put(`/tomatoes/${this.data.tomato.id}`, {
         description: content,
@@ -114,7 +113,7 @@ Page({
     }
   },
 
-  finishedCancel() {
+  finishedCancel(event) {
     http.put(`/tomatoes/${this.data.tomato.id}`, {
       description: event.detail,
       aborted: true

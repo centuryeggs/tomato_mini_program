@@ -31,6 +31,7 @@ Component({
     },
     cancel(){
       this.triggerEvent('cancel', '取消')
+      this.setData({ value: "" })
     },
     watchvalue(event){
       this.setData({ value: event.detail.value})
