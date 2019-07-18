@@ -95,7 +95,7 @@ Page({
 
   again() {
     this.setData({
-      defaultSecond: 1500,
+      defaultSecond: 10,
       timeOver: false
     })
     this.startTime()
@@ -137,7 +137,7 @@ Page({
 
   onUnload() {
     this.stopTime()
-    if (!timeOver) {
+    if (!this.data.timeOver) {
       http.put(`/tomatoes/${this.data.tomato.id}`, {
         description: "退出放弃",
         aborted: true

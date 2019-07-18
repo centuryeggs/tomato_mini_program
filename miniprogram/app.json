@@ -1,8 +1,11 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/test/test",
-    "pages/me/me"
+    "pages/login/login",
+    "pages/tomato/tomato",
+    "pages/me/me",
+    "pages/binding/binding"
+
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -21,12 +24,6 @@
         "text": "专注",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home-active.png"
-      },
-      {
-        "pagePath": "pages/test/test",
-        "text": "数据统计",
-        "iconPath": "images/total.png",
-        "selectedIconPath": "images/total-active.png"
       },
       {
         "pagePath": "pages/me/me",

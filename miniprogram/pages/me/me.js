@@ -2,7 +2,7 @@ const { http } = require('../../lib/http.js')
 
 Page({
   data: {
-    tab: "tomato",
+    tab: "0",
     tomatoes: {},
     todos: {},
     me: {}
@@ -29,11 +29,17 @@ Page({
       this.setData  ({ todos: response.data.resources })
     })
   },
+  swiperChange(event) {
+    this.setData({ tab: event.detail.current })
 
-  changeTab(event) {
+  },
+  changeTomato(event) {
     let name = event.currentTarget.dataset.name
-    this.setData({
-      tab: name
-    })
+    this.setData({ tab: '0' })
+
+  },
+  changeTask(event) {
+    let name = event.currentTarget.dataset.name
+    this.setData({ tab: '1' })
   }
 })

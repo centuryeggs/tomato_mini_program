@@ -4,11 +4,11 @@ Component({
       type: Boolean,
       value: ""
     },
-    placeholder: {
+    value: {
       type: String,
       value: ""
     },
-    value: {
+    title: {
       type: String,
       value: ""
     }

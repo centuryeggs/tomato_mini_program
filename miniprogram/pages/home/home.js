@@ -8,6 +8,7 @@ Page({
     visibleAdd: false,
     visibleUpdate: false,
     changeText: "",
+    selectTab: ""
   },
 
   onShow() {
@@ -16,11 +17,16 @@ Page({
         lists: response.data.resources
       })
     })
+    if (!this.data.lists.length) {
+      this.setData({ selectTab: '' })
+    }
   },
 
   completeTodo(event) {
     let index = event.currentTarget.dataset.index
     let id = event.currentTarget.dataset.id
+    this.setData({ selectTab: index })
+    setTimeout(() => {
     http.put(`/todos/${id}`, {
         completed: true
       })
@@ -29,7 +35,14 @@ Page({
         this.setData({
           lists: this.data.lists
         })
+        this.setData({ selectTab: '' })
+        wx.showToast({
+          title: '确认完成',
+          icon: 'success',
+          duration: 1000
+        })
       })
+    },1000)
   },
 
   changeText(event) {

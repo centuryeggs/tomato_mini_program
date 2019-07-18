@@ -1,12 +1,12 @@
 <view class="home-container">
   <scroll-view class="todoList" scroll-y="true">
-    <view class="item" 
+    <view class="{{selectTab === index ? 'item active'  : 'item'}}" 
       wx:for="{{lists}}" 
       wx:key="{{item.id}}" 
       wx:for-index="index" 
       wx:if="{{!item.completed}}"
     >
-      <view class="select {{item.completed && 'active'}}" 
+      <view class="select {{selectTab === index && 'active'}}" 
         bindtap="completeTodo" 
         data-index="{{index}}" 
         data-id="{{item.id}}">
@@ -26,6 +26,6 @@
       </navigator>
     </view>
   </view>
-  <g-confirm visible="{{visibleAdd}}" placeholder="请输入您完成的内容" bindconfirm="confirmAdd" bindcancel="hideConfirmBox"></g-confirm>
-  <g-confirm visible="{{visibleUpdate}}" placeholder="请填写更新内容" bindconfirm="confirmUpdate" bindcancel="hideConfirmBox" value= "{{changeText}}">{{changeText}}</g-confirm>
+  <g-confirm visible="{{visibleAdd}}" title="请输入任务内容" bindconfirm="confirmAdd" bindcancel="hideConfirmBox"></g-confirm>
+  <g-confirm visible="{{visibleUpdate}}" title="请输入更新内容" bindconfirm="confirmUpdate" bindcancel="hideConfirmBox" value= "{{changeText}}">{{changeText}}</g-confirm>
 </view>

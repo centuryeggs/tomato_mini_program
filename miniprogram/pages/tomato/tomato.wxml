@@ -14,6 +14,6 @@
   <view class="again" wx:else>
     <t-button text="再来一组" size="mini" bindtap="again" wx:if="{{!finishedBox}}"></t-button>
   </view>
-  <t-confirm visible="{{abandonBox}}" bindconfirm="abandonConfirm" bindcancel="abandonCancel" placeholder="请填写放弃理由"></t-confirm>
-  <t-confirm visible="{{finishedBox}}" bindconfirm="finishedConfirm" bindcancel="finishedCancel" placeholder="您刚刚做了什么"></t-confirm>
+  <t-confirm visible="{{abandonBox}}" bindconfirm="abandonConfirm" bindcancel="abandonCancel" title="请填写放弃理由"></t-confirm>
+  <t-confirm visible="{{finishedBox}}" bindconfirm="finishedConfirm" bindcancel="finishedCancel" title="您刚刚做了什么"></t-confirm>
 </view>
